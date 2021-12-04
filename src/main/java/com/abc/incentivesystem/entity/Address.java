@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "adress_tbl")
 public class Address {
-	
+
 	@Id
 	@Column(name = "door_no")
 	private String doorNo;
@@ -23,9 +23,9 @@ public class Address {
 
 	@Column(name = "pincode")
 	private int pincode;
-	
+
 	@ManyToOne
-	@JoinColumn(name="customer_id")
+	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
 	public String getDoorNo() {

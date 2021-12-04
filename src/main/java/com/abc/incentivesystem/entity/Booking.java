@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table(name = "booking_tbl")
 public class Booking {
 
-	
 	@Id
 	@Column(name = "booking_id")
 	private int bookingId;
@@ -22,7 +21,7 @@ public class Booking {
 	private LocalDate bookingDate;
 
 	@OneToOne(optional = false)
-	@JoinColumn(name="customer_id")
+	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
 	@OneToOne

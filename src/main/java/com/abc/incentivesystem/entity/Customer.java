@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "customer_tbl")
 public class Customer {
-	
+
 	@Id
 	@Column(name = "customer_id")
 	private String customerId;
@@ -25,10 +25,10 @@ public class Customer {
 
 	@Column(name = "email")
 	private String email;
-	
+
 	@OneToMany(mappedBy = "customer")
 	private List<Address> adresses;
-	
+
 	@OneToOne(mappedBy = "customer")
 	private Booking booking;
 

@@ -25,8 +25,8 @@ public class Car {
 
 	@Column(name = "registration_no")
 	private String registrationNo;
-	
-	@OneToOne 
+
+	@OneToOne
 	private Booking booking;
 
 	public long getCarId() {

@@ -19,39 +19,39 @@ import com.abc.incentivesystem.service.BookingService;
 public class BookingController {
 	@Autowired
 	private BookingService bookingService;
-	
+
 	@PostMapping("/save")
-	public ResponseEntity<Booking> saveBooking(@RequestBody Booking booking){
-		Booking booking2=bookingService.AddBooking(booking);
-		ResponseEntity<Booking> entity= new ResponseEntity<>(booking2, HttpStatus.CREATED);
+	public ResponseEntity<Booking> saveBooking(@RequestBody Booking booking) {
+		Booking booking2 = bookingService.AddBooking(booking);
+		ResponseEntity<Booking> entity = new ResponseEntity<>(booking2, HttpStatus.CREATED);
 		return entity;
-		
+
 	}
-	
+
 	@PostMapping("/update{id}")
-	public ResponseEntity<Booking> updateBooking(@RequestBody Car car, @PathVariable("id") int bookingId){
-		Booking booking=bookingService.updateCarBooking(car, bookingId);
+	public ResponseEntity<Booking> updateBooking(@RequestBody Car car, @PathVariable("id") int bookingId) {
+		Booking booking = bookingService.updateCarBooking(car, bookingId);
 		return new ResponseEntity<>(booking, HttpStatus.OK);
-				
+
 	}
-	
+
 	@PostMapping("/delete")
 	public void deleteBooking(Booking booking) {
 //		return new ResponseEntity<>(bookingService.removeBooking(booking), HttpStatus.OK);
 		bookingService.removeBooking(booking);
 	}
-	
+
 	@GetMapping("/get")
-	public void fetchAllBooking(){
+	public void fetchAllBooking() {
 		bookingService.getAllBooking();
 //		ResponseEntity<Booking> entity=new ResponseEntity<>(bookings, HttpStatus.OK)
-		
+
 	}
-	
+
 	@GetMapping("/get{id}")
-	public ResponseEntity<Booking> getBookingById(@PathVariable("id") int bookingId){
-		Booking booking=bookingService.getBookingById(bookingId);
-		ResponseEntity<Booking> entity=new ResponseEntity<>(booking, HttpStatus.OK);
+	public ResponseEntity<Booking> getBookingById(@PathVariable("id") int bookingId) {
+		Booking booking = bookingService.getBookingById(bookingId);
+		ResponseEntity<Booking> entity = new ResponseEntity<>(booking, HttpStatus.OK);
 		return entity;
 	}
 

@@ -6,12 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="incentive_tbl")
+@Table(name = "incentive_tbl")
 public class Incentive {
-	
-	
+
 	@Id
-	@Column(name="no_of_sales")
+	@Column(name = "no_of_sales")
 	private int noOfSales;
 
 	public int getNoOfSales() {
