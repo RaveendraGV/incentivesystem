@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,7 +21,8 @@ public class Booking {
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
 
-	@OneToOne(mappedBy = "booking")
+	@OneToOne(optional = false)
+	@JoinColumn(name="customer_id")
 	private Customer customer;
 
 	@OneToOne
