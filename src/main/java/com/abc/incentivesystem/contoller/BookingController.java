@@ -1,5 +1,7 @@
 package com.abc.incentivesystem.contoller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import com.abc.incentivesystem.entity.Booking;
 import com.abc.incentivesystem.entity.Car;
 import com.abc.incentivesystem.service.BookingService;
 
+
+
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
@@ -22,7 +26,7 @@ public class BookingController {
 
 	@PostMapping("/save")
 	public ResponseEntity<Booking> saveBooking(@RequestBody Booking booking) {
-		Booking booking2 = bookingService.AddBooking(booking);
+		Booking booking2 = bookingService.addBooking(booking);
 		ResponseEntity<Booking> entity = new ResponseEntity<>(booking2, HttpStatus.CREATED);
 		return entity;
 
@@ -35,16 +39,17 @@ public class BookingController {
 
 	}
 
-	@PostMapping("/delete")
-	public void deleteBooking(Booking booking) {
-//		return new ResponseEntity<>(bookingService.removeBooking(booking), HttpStatus.OK);
-		bookingService.removeBooking(booking);
+	@PostMapping("/delete{id}")
+	public ResponseEntity<Booking> deleteBookingById(@PathVariable("id") int bookingId) {
+		Booking booking= bookingService.removeBookingById(bookingId);
+		return new ResponseEntity<>(booking, HttpStatus.OK);
+//		bookingService.removeBookingById(bookingId);
 	}
 
 	@GetMapping("/get")
-	public void fetchAllBooking() {
-		bookingService.getAllBooking();
-//		ResponseEntity<Booking> entity=new ResponseEntity<>(bookings, HttpStatus.OK)
+	public ResponseEntity<List<Booking>> fetchAllBooking() {
+	List<Booking> bookings=	bookingService.getAllBooking();
+		return new ResponseEntity<>(bookings, HttpStatus.OK);
 
 	}
 

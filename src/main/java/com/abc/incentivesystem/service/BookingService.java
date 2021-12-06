@@ -8,11 +8,11 @@ import com.abc.incentivesystem.exception.BookingNotExistException;
 import com.abc.incentivesystem.exception.InvalidBookingDetailsException;
 
 public interface BookingService {
-	public Booking AddBooking(Booking booking);
+	public Booking addBooking(Booking booking);
 
 	public Booking updateCarBooking(Car car, int bookingId) throws InvalidBookingDetailsException;
 
-	public void removeBooking(Booking booking);
+	public Booking removeBookingById(int bookingId)throws BookingNotExistException;
 
 	public List<Booking> getAllBooking();
 

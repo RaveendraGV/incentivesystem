@@ -18,7 +18,7 @@ public class BookingServiceImpl implements BookingService {
 	private IBookingDao bookingDao;
 
 	@Override
-	public Booking AddBooking(Booking booking) {
+	public Booking addBooking(Booking booking) {
 		Optional<Booking> optionalbooking = bookingDao.getBookingByID(booking.getBookingId());
 		if (optionalbooking.isPresent()) {
 			throw new DuplicateBookingException("Booking Id" + booking.getBookingId() + " is already exist");
@@ -42,12 +42,14 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public void removeBooking(Booking booking) {
-		Optional<Booking> optionalbooking = bookingDao.getBookingByID(booking.getBookingId());
-		if (optionalbooking.isEmpty()) {
-			throw new InvalidBookingDetailsException("Booking Id should not be null");
+	public Booking removeBookingById(int bookingId)throws BookingNotExistException  {
+		Optional<Booking> optionalBooking = bookingDao.getBookingByID(bookingId);
+		if (optionalBooking.isEmpty()) {
+			throw new BookingNotExistException("Booking is not exist with booking id" + bookingId);
 		}
+		Booking booking = bookingDao.findById(bookingId).get();
 		bookingDao.delete(booking);
+		return booking;
 
 	}
 

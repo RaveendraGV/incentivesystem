@@ -2,12 +2,15 @@ package com.abc.incentivesystem.entity;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "booking_tbl")
@@ -19,15 +22,16 @@ public class Booking {
 
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
-
-	@OneToOne(optional = false)
+	
+	@JsonManagedReference
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Car car;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Incentive incentive;
 
 	public int getBookingId() {

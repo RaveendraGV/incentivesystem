@@ -1,13 +1,19 @@
 package com.abc.incentivesystem.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "customer_tbl")
@@ -25,11 +31,13 @@ public class Customer {
 
 	@Column(name = "email")
 	private String email;
-
-	@OneToMany(mappedBy = "customer")
-	private List<Address> adresses;
-
-	@OneToOne(mappedBy = "customer")
+	
+//	@JsonManagedReference
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	private List<Address> adresses= new ArrayList<>();
+	
+	@JsonBackReference
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Booking booking;
 
 	public String getCustomerId() {
