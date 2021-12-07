@@ -2,6 +2,9 @@ package com.abc.incentivesystem.contoller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +28,7 @@ public class BookingController {
 	private BookingService bookingService;
 
 	@PostMapping("/save")
-	public ResponseEntity<Booking> saveBooking(@RequestBody Booking booking) {
+	public ResponseEntity<Booking> saveBooking(@Valid @RequestBody Booking booking) {
 		Booking booking2 = bookingService.addBooking(booking);
 		ResponseEntity<Booking> entity = new ResponseEntity<>(booking2, HttpStatus.CREATED);
 		return entity;
@@ -33,16 +36,16 @@ public class BookingController {
 	}
 
 	@PostMapping("/update{id}")
-	public ResponseEntity<Booking> updateBooking(@RequestBody Car car, @PathVariable("id") int bookingId) {
+	public ResponseEntity<Booking> updateBooking(@Valid @RequestBody Car car, @PathVariable("id") int bookingId) {
 		Booking booking = bookingService.updateCarBooking(car, bookingId);
 		return new ResponseEntity<>(booking, HttpStatus.OK);
 
 	}
 
 	@PostMapping("/delete{id}")
-	public ResponseEntity<Booking> deleteBookingById(@PathVariable("id") int bookingId) {
-		Booking booking= bookingService.removeBookingById(bookingId);
-		return new ResponseEntity<>(booking, HttpStatus.OK);
+	public ResponseEntity<String> deleteBookingById(@PathVariable("id") @Min(1) int bookingId) {
+		bookingService.removeBookingById(bookingId);
+		return new ResponseEntity<>("Booking Removed", HttpStatus.OK);
 //		bookingService.removeBookingById(bookingId);
 	}
 
@@ -54,7 +57,7 @@ public class BookingController {
 	}
 
 	@GetMapping("/get{id}")
-	public ResponseEntity<Booking> getBookingById(@PathVariable("id") int bookingId) {
+	public ResponseEntity<Booking> getBookingById(@PathVariable("id") @Min(1) int bookingId) {
 		Booking booking = bookingService.getBookingById(bookingId);
 		ResponseEntity<Booking> entity = new ResponseEntity<>(booking, HttpStatus.OK);
 		return entity;

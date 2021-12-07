@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "user_tbl")
@@ -12,13 +13,16 @@ public class User {
 	@Id
 	@Column(name = "id")
 	private String id;
-
+	
+	@NotNull(message = "Please povide the password")
 	@Column(name = "password")
 	private String password;
-
+	
+	@NotNull(message = "Mention the type of user")
 	@Column(name = "type")
 	private String type;
-
+	
+	@NotNull(message = "Please provide the username")
 	@Column(name = "username")
 	private String userName;
 

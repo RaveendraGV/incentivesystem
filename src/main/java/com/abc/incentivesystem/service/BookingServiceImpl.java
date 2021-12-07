@@ -19,7 +19,7 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public Booking addBooking(Booking booking) {
-		Optional<Booking> optionalbooking = bookingDao.getBookingByID(booking.getBookingId());
+		Optional<Booking> optionalbooking = bookingDao.findById(booking.getBookingId());
 		if (optionalbooking.isPresent()) {
 			throw new DuplicateBookingException("Booking Id" + booking.getBookingId() + " is already exist");
 		}
@@ -42,14 +42,15 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public Booking removeBookingById(int bookingId)throws BookingNotExistException  {
-		Optional<Booking> optionalBooking = bookingDao.getBookingByID(bookingId);
+	public void removeBookingById(int bookingId)throws BookingNotExistException  {
+		Optional<Booking> optionalBooking = bookingDao.findById(bookingId);
 		if (optionalBooking.isEmpty()) {
 			throw new BookingNotExistException("Booking is not exist with booking id" + bookingId);
 		}
-		Booking booking = bookingDao.findById(bookingId).get();
-		bookingDao.delete(booking);
-		return booking;
+//		bookingDao.deleteById(bookingId);
+//		Booking booking = bookingDao.findById(bookingId).get();
+		bookingDao.delete(optionalBooking.get());
+//		return booking;
 
 	}
 
@@ -62,12 +63,13 @@ public class BookingServiceImpl implements BookingService {
 	@Override
 	public Booking getBookingById(int bookingId) throws BookingNotExistException {
 
-		Optional<Booking> optionalBooking = bookingDao.getBookingByID(bookingId);
+		Optional<Booking> optionalBooking = bookingDao.findById(bookingId);
 		if (optionalBooking.isEmpty()) {
 			throw new BookingNotExistException("Booking is not exist with booking id" + bookingId);
 		}
-		Booking booking = bookingDao.findById(bookingId).get();
-		return booking;
+		return optionalBooking.get();
 	}
+
+
 
 }

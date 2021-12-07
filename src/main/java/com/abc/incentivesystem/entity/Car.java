@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "car_tbl")
@@ -14,19 +15,23 @@ public class Car {
 	@Column(name = "car_id")
 	private long carId;
 
+	@NotNull(message = "Please provide the brand")
 	@Column(name = "brand")
 	private String brand;
 
+	@NotNull(message = "Please provide the model")
 	@Column(name = "model")
 	private String model;
 
+	@NotNull(message = "Please provide year of manufacturing")
 	@Column(name = "year_of_mfg")
 	private String yearOfManufaturing;
 
+	@NotNull(message = "Please provide the registration number")
 	@Column(name = "registration_no")
 	private String registrationNo;
 
-	@OneToOne
+	@OneToOne // (cascade = CascadeType.ALL)
 	private Booking booking;
 
 	public long getCarId() {

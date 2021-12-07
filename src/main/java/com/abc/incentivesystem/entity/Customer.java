@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -22,22 +23,26 @@ public class Customer {
 	@Id
 	@Column(name = "customer_id")
 	private String customerId;
-
+	
+	@NotNull(message = "Please provide the customer name")
 	@Column(name = " customer_name")
 	private String name;
-
+	
+	@NotNull(message = "Please provide the customer phone number")
 	@Column(name = "phone_no")
 	private String contactNo;
-
+	
+	@NotNull(message = "Please provide the customer email")
 	@Column(name = "email")
 	private String email;
 	
 //	@JsonManagedReference
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
 	private List<Address> adresses= new ArrayList<>();
 	
 	@JsonBackReference
-	@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "customer", cascade = CascadeType.PERSIST)
+//	@JoinColumn(name="booking_id")
 	private Booking booking;
 
 	public String getCustomerId() {
