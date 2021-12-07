@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -21,7 +21,7 @@ public class Booking {
 	@Column(name = "booking_id")
 	private int bookingId;
 	
-	@NotBlank(message = "Localdate should not be blank")
+	@NotNull(message = "Localdate should not be empty")
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
 	
@@ -30,7 +30,7 @@ public class Booking {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 //	@JoinColumn(name="customer_id")
 	private Car car;
 

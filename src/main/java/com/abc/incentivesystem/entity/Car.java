@@ -7,6 +7,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "car_tbl")
 public class Car {
@@ -30,8 +32,9 @@ public class Car {
 	@NotNull(message = "Please provide the registration number")
 	@Column(name = "registration_no")
 	private String registrationNo;
-
-	@OneToOne // (cascade = CascadeType.ALL)
+	
+	@JsonIgnore
+	@OneToOne  
 	private Booking booking;
 
 	public long getCarId() {

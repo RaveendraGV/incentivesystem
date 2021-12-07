@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -36,6 +37,7 @@ public class Customer {
 	@Column(name = "email")
 	private String email;
 	
+	@JsonIgnore
 //	@JsonManagedReference
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
 	private List<Address> adresses= new ArrayList<>();
