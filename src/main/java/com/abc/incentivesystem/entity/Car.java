@@ -13,14 +13,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "car_tbl")
 public class Car {
 
+
 	@Id
 	@Column(name = "car_id")
-	private long carId;
+	private int carId;
 
 	@NotNull(message = "Please provide the brand")
 	@Column(name = "brand")
 	private String brand;
+	
+	@NotNull(message = "Please provide the dealerId")
+	@Column(name = "dealer_id")
+	private int dealerId;
 
+	//date add
 	@NotNull(message = "Please provide the model")
 	@Column(name = "model")
 	private String model;
@@ -37,11 +43,11 @@ public class Car {
 	@OneToOne  
 	private Booking booking;
 
-	public long getCarId() {
+	public int getCarId() {
 		return carId;
 	}
 
-	public void setCarId(long carId) {
+	public void setCarId(int carId) {
 		this.carId = carId;
 	}
 
@@ -84,4 +90,13 @@ public class Car {
 	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
+
+	public int getDealerId() {
+		return dealerId;
+	}
+
+	public void setDealerId(int dealerId) {
+		this.dealerId = dealerId;
+	}
+	
 }

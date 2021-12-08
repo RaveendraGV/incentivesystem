@@ -70,6 +70,4 @@ public class BookingServiceImpl implements BookingService {
 		return optionalBooking.get();
 	}
 
-
-
 }

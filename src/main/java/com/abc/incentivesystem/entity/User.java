@@ -1,61 +1,135 @@
 package com.abc.incentivesystem.entity;
 
+
+
+import java.util.List;
+
+
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
+
 
 @Entity
 @Table(name = "user_tbl")
 public class User {
 
-	@Id
-	@Column(name = "id")
-	private String id;
-	
-	@NotNull(message = "Please povide the password")
-	@Column(name = "password")
-	private String password;
-	
-	@NotNull(message = "Mention the type of user")
-	@Column(name = "type")
-	private String type;
-	
-	@NotNull(message = "Please provide the username")
-	@Column(name = "username")
-	private String userName;
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+@Id
+@Column(name = "user_id")
+private long id;
 
-	public String getPassword() {
-		return password;
-	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
-	public String getType() {
-		return type;
-	}
+@NotNull(message = "Please provide a name")
+@Column(name = "username")
+private String userName;
 
-	public void setType(String type) {
-		this.type = type;
-	}
 
-	public String getUserName() {
-		return userName;
-	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+@NotNull(message = "Please provide a password")
+@Column(name = "password", nullable = false)
+private String passWord;
+
+
+
+@Column(name = "role")
+private String role;
+
+@JsonIgnore
+@OneToMany(targetEntity = Booking.class, mappedBy = "user", cascade = CascadeType.ALL)
+private List<Booking> booking;
+
+@JsonIgnore
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Incentive> incentive;
+
+
+
+public long getId() {
+return id;
+}
+
+
+
+public void setId(long id) {
+this.id = id;
+}
+
+
+
+public String getUsername() {
+return userName;
+}
+
+
+
+public void setUsername(String username) {
+this.userName = username;
+}
+
+
+
+public String getPassword() {
+return passWord;
+}
+
+
+
+public void setPassword(String password) {
+this.passWord = password;
+}
+
+
+
+public String getRole() {
+return role;
+}
+
+
+
+public void setRole(String role) {
+this.role = role;
+}
+
+
+
+public List<Booking> getBooking() {
+return booking;
+}
+
+
+
+public void setBooking(List<Booking> booking) {
+this.booking = booking;
+}
+
+
+
+public List<Incentive> getIncentive() {
+return incentive;
+}
+
+
+
+public void setIncentive(List<Incentive> incentive) {
+this.incentive = incentive;
+}
+
+
+
 
 }

@@ -6,10 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-//import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "adress_tbl")
@@ -18,16 +14,13 @@ public class Address {
 	@Id
 	@Column(name = "door_no")
 	private String doorNo;
-	
-	@NotEmpty(message = "Please provide a city name")
+
 	@Column(name = "city")
 	private String city;
-	
-	@NotEmpty(message = "Please provide a state name")
+
 	@Column(name = "state")
 	private String state;
-	
-	@NotNull(message = "Pincode Should not be empty")
+
 	@Column(name = "pincode")
 	private int pincode;
 	

@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 //import java.util.ArrayList;
-//import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -14,12 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.abc.incentivesystem.dao.IBookingDao;
-//import com.abc.incentivesystem.entity.Address;
 import com.abc.incentivesystem.entity.Booking;
 import com.abc.incentivesystem.entity.Car;
-//import com.abc.incentivesystem.entity.Car;
-//import com.abc.incentivesystem.entity.Customer;
-//import com.abc.incentivesystem.entity.Incentive;
 import com.abc.incentivesystem.exception.BookingNotExistException;
 import com.abc.incentivesystem.exception.DuplicateBookingException;
 import com.abc.incentivesystem.exception.InvalidBookingDetailsException;
