@@ -22,24 +22,24 @@ public class Customer {
 	@Id
 	@Column(name = "customer_id")
 	private String customerId;
-	
+
 	@NotNull(message = "Please provide the customer name")
 	@Column(name = " customer_name")
 	private String name;
-	
+
 	@NotNull(message = "Please provide the customer phone number")
 	@Column(name = "phone_no")
 	private String contactNo;
-	
+
 	@NotNull(message = "Please provide the customer email")
 	@Column(name = "email")
 	private String email;
-	
+
 	@JsonIgnore
 //	@JsonManagedReference
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
-	private List<Address> adresses= new ArrayList<>();
-	
+	private List<Address> adresses = new ArrayList<>();
+
 	@JsonBackReference
 	@OneToOne(mappedBy = "customer", cascade = CascadeType.PERSIST)
 //	@JoinColumn(name="booking_id")

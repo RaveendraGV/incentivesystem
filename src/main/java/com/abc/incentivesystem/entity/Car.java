@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "car_tbl")
 public class Car {
 
-
 	@Id
 	@Column(name = "car_id")
 	private int carId;
@@ -21,12 +20,12 @@ public class Car {
 	@NotNull(message = "Please provide the brand")
 	@Column(name = "brand")
 	private String brand;
-	
+
 	@NotNull(message = "Please provide the dealerId")
 	@Column(name = "dealer_id")
 	private int dealerId;
 
-	//date add
+	// date add
 	@NotNull(message = "Please provide the model")
 	@Column(name = "model")
 	private String model;
@@ -38,9 +37,9 @@ public class Car {
 	@NotNull(message = "Please provide the registration number")
 	@Column(name = "registration_no")
 	private String registrationNo;
-	
+
 	@JsonIgnore
-	@OneToOne  
+	@OneToOne
 	private Booking booking;
 
 	public int getCarId() {
@@ -98,5 +97,5 @@ public class Car {
 	public void setDealerId(int dealerId) {
 		this.dealerId = dealerId;
 	}
-	
+
 }

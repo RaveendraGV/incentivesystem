@@ -23,7 +23,7 @@ public class Address {
 
 	@Column(name = "pincode")
 	private int pincode;
-	
+
 //	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
