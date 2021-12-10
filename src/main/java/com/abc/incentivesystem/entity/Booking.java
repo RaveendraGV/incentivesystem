@@ -36,7 +36,7 @@ public class Booking {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Car car;
 
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Incentive incentive;
 
 	@JsonIgnore

@@ -17,39 +17,45 @@ public class CarServiceImpl implements CarService {
 
 	@Autowired
 	private ICarDao carDao;
-	//getCarById(car.getCarId());
+
 	@Override
-	public Car addCar(Car car) throws DuplicateCarDetailException{
+	public Car addCar(Car car) throws DuplicateCarDetailException {
 		Optional<Car> optionalCar = carDao.getCarByID(car.getCarId());
 		if (optionalCar.isPresent()) {
-			throw new DuplicateCarDetailException("Car Id "+car.getCarId()+" is already exist");
+			throw new DuplicateCarDetailException("Car Id " + car.getCarId() + " is already exist");
 		}
-		
-		Car newCar=carDao.save(car);
+
+		Car newCar = carDao.save(car);
 		return newCar;
 	}
 
 	@Override
 	public Car updateCarById(Car car, int carId) throws InvalidCarDetailsException {
-		Optional<Car> optionalCar = carDao.getCarByID(carId);
+		Optional<Car> optionalCar = carDao.findById(carId);
 		if (optionalCar.isEmpty()) {
 			throw new InvalidCarDetailsException("Car details are invalid");
 		}
 
-		Car newCar = carDao.getById(carId);
-		newCar.setCarId(carId);
+		Car newCar = carDao.findById(carId).get();
+		newCar.setCarId(car.getCarId());
+		newCar.setBrand(car.getBrand());
+		newCar.setDealerId(car.getDealerId());
+		newCar.setModel(car.getModel());
+		newCar.setRegistrationNo(car.getRegistrationNo());
+		newCar.setYearOfManufaturing(car.getYearOfManufaturing());
+		newCar.setBooking(car.getBooking());
 		carDao.save(newCar);
 		return newCar;
 	}
-	
+
 	@Override
-	public void removeCarById(int carId) throws InvalidCarDetailsException{
-		Optional<Car> optionalCar= carDao.findById(carId);
-		 
+	public void removeCarById(int carId) throws InvalidCarDetailsException {
+		Optional<Car> optionalCar = carDao.findById(carId);
+
 		if (optionalCar.isEmpty()) {
 			throw new InvalidCarDetailsException("Car details should not be null");
-			
-		}	
+
+		}
 		carDao.delete(optionalCar.get());
 	}
 
@@ -60,15 +66,14 @@ public class CarServiceImpl implements CarService {
 	}
 
 	@Override
-	public Car getCarById(int carId) throws CarNotExistException{
-		
-		Optional<Car> optionalCar =carDao.getCarByID(carId);
+	public Car getCarById(int carId) throws CarNotExistException {
+
+		Optional<Car> optionalCar = carDao.getCarByID(carId);
 		if (optionalCar.isEmpty()) {
-			throw new CarNotExistException("Car details not exist with "+carId+" this car id");
+			throw new CarNotExistException("Car details not exist with " + carId + " this car id");
 		}
-		Car car= carDao.findById(carId).get();
+		Car car = carDao.findById(carId).get();
 		return car;
 	}
-
 
 }

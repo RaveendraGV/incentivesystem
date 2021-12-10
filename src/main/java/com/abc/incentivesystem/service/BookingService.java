@@ -12,7 +12,7 @@ public interface BookingService {
 
 	public Booking updateCarBooking(Car car, int bookingId) throws InvalidBookingDetailsException;
 
-	public void removeBookingById(int bookingId)throws BookingNotExistException;
+	public void removeBookingById(int bookingId) throws BookingNotExistException;
 
 	public List<Booking> getAllBooking();
 

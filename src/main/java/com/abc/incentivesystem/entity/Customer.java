@@ -36,13 +36,11 @@ public class Customer {
 	private String email;
 
 	@JsonIgnore
-//	@JsonManagedReference
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
 	private List<Address> adresses = new ArrayList<>();
 
 	@JsonBackReference
 	@OneToOne(mappedBy = "customer", cascade = CascadeType.PERSIST)
-//	@JoinColumn(name="booking_id")
 	private Booking booking;
 
 	public String getCustomerId() {

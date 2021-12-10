@@ -6,7 +6,7 @@ public class AuthenticationFailureException extends RuntimeException {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public  AuthenticationFailureException(String message) {
+	public AuthenticationFailureException(String message) {
 		super(message);
 	}
 

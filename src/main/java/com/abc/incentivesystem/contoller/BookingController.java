@@ -20,15 +20,13 @@ import com.abc.incentivesystem.entity.Booking;
 import com.abc.incentivesystem.entity.Car;
 import com.abc.incentivesystem.service.BookingService;
 
-
-
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
 	@Autowired
 	private BookingService bookingService;
-	
-	private static final org.slf4j.Logger LOGGER=LoggerFactory.getLogger(BookingController.class);
+
+	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(BookingController.class);
 
 	@PostMapping("/save")
 	public ResponseEntity<Booking> saveBooking(@Valid @RequestBody Booking booking) {
@@ -52,13 +50,12 @@ public class BookingController {
 		LOGGER.info("Delete Booking called");
 		bookingService.removeBookingById(bookingId);
 		return new ResponseEntity<>("Booking Removed", HttpStatus.OK);
-//		bookingService.removeBookingById(bookingId);
 	}
 
 	@GetMapping("/get")
 	public ResponseEntity<List<Booking>> fetchAllBooking() {
 		LOGGER.info("Get booking called");
-	List<Booking> bookings=	bookingService.getAllBooking();
+		List<Booking> bookings = bookingService.getAllBooking();
 		return new ResponseEntity<>(bookings, HttpStatus.OK);
 
 	}

@@ -42,15 +42,12 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public void removeBookingById(int bookingId)throws BookingNotExistException  {
+	public void removeBookingById(int bookingId) throws BookingNotExistException {
 		Optional<Booking> optionalBooking = bookingDao.findById(bookingId);
 		if (optionalBooking.isEmpty()) {
 			throw new BookingNotExistException("Booking is not exist with booking id" + bookingId);
 		}
-//		bookingDao.deleteById(bookingId);
-//		Booking booking = bookingDao.findById(bookingId).get();
 		bookingDao.delete(optionalBooking.get());
-//		return booking;
 
 	}
 

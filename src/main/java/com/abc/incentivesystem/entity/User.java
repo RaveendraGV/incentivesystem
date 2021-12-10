@@ -20,13 +20,13 @@ public class User {
 	@Column(name = "user_id")
 	private long id;
 
-	@NotNull(message = "Please provide a name")
+	@NotNull(message = "Please provide the username")
 	@Column(name = "username")
 	private String userName;
 
-	@NotNull(message = "Please provide a password")
-	@Column(name = "password", nullable = false)
-	private String passWord;
+	@NotNull(message = "Please povide the password")
+	@Column(name = "password")
+	private String password;
 
 	@Column(name = "role")
 	private String role;
@@ -47,20 +47,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getUsername() {
+	public String getUserName() {
 		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.userName = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
-		return passWord;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		this.passWord = password;
+		this.password = password;
 	}
 
 	public String getRole() {

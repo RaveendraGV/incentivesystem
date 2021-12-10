@@ -25,7 +25,6 @@ public class Car {
 	@Column(name = "dealer_id")
 	private int dealerId;
 
-	// date add
 	@NotNull(message = "Please provide the model")
 	@Column(name = "model")
 	private String model;

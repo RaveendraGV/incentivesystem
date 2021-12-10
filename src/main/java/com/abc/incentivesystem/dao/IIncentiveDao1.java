@@ -6,5 +6,4 @@ import com.abc.incentivesystem.entity.Incentive1;
 
 public interface IIncentiveDao1 extends JpaRepository<Incentive1, Integer> {
 
-	
 }
