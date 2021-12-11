@@ -16,6 +16,13 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/**
+* The Booking POJO class
+* simply defines the class variables and relationship with other POJO classes.
+*
+* @author  Raveendra G V
+*/
+
 @Entity
 @Table(name = "booking_tbl")
 public class Booking {
@@ -29,14 +36,14 @@ public class Booking {
 	private LocalDate bookingDate;
 
 	@JsonManagedReference
-	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	@OneToOne(optional = false, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Car car;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Incentive incentive;
 
 	@JsonIgnore

@@ -7,6 +7,13 @@ import com.abc.incentivesystem.entity.Car;
 import com.abc.incentivesystem.exception.BookingNotExistException;
 import com.abc.incentivesystem.exception.InvalidBookingDetailsException;
 
+/**
+* The Booking Service Interface
+* Creating methods to perform CRUD operations
+*
+* @author  Raveendra G V
+*/
+
 public interface BookingService {
 	public Booking addBooking(Booking booking);
 

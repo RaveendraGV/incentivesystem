@@ -8,6 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import com.abc.incentivesystem.entity.Booking;
 
+/**
+* Booking Dao Interface
+* @author  Raveendra G V
+*/
+
 public interface IBookingDao extends JpaRepository<Booking, Integer> {
 
 	@Query(value = "select a from Booking a where a.bookingId= :bId")

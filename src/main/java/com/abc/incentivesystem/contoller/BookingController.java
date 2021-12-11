@@ -20,6 +20,13 @@ import com.abc.incentivesystem.entity.Booking;
 import com.abc.incentivesystem.entity.Car;
 import com.abc.incentivesystem.service.BookingService;
 
+/**
+* The Booking Controller class
+* simply pass the values to service implementation and contol the mapping.
+*
+* @author  Raveendra G V
+*/
+
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
@@ -46,7 +53,7 @@ public class BookingController {
 	}
 
 	@PostMapping("/delete{id}")
-	public ResponseEntity<String> deleteBookingById(@PathVariable("id") @Min(1) int bookingId) {
+	public ResponseEntity<String> deleteBookingById(@PathVariable("id")@Min(1) int bookingId) {
 		LOGGER.info("Delete Booking called");
 		bookingService.removeBookingById(bookingId);
 		return new ResponseEntity<>("Booking Removed", HttpStatus.OK);
@@ -62,6 +69,7 @@ public class BookingController {
 
 	@GetMapping("/get{id}")
 	public ResponseEntity<Booking> getBookingById(@PathVariable("id") @Min(1) int bookingId) {
+		LOGGER.info("Get booking by id called");
 		Booking booking = bookingService.getBookingById(bookingId);
 		ResponseEntity<Booking> entity = new ResponseEntity<>(booking, HttpStatus.OK);
 		return entity;

@@ -10,12 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.abc.incentivesystem.entity.User;
-//import com.abc.incentivesystem.payload.LoginReqPayLoad;
+import com.abc.incentivesystem.payload.LoginReqPayLoad;
 import com.abc.incentivesystem.service.UserService;
 
 @RestController
@@ -39,17 +38,17 @@ public class UserController {
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
-	@PutMapping("/update/{id}")
+	@PostMapping("/update/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable long id, @Valid @RequestBody User user) {
 		user.setId(id);
 		return ResponseEntity.ok().body(this.userService.changePassword(user, id));
 	}
 
-//	@PostMapping("/login")
-//	public ResponseEntity<User> doLogin(@Valid @RequestBody LoginReqPayLoad loginUser) {
-//		User user = userService.login(loginUser.getUserName(), loginUser.getPassword());
-//		return new ResponseEntity<>(user, HttpStatus.OK);
-//	}
+	@PostMapping("/login")
+	public ResponseEntity<User> doLogin(@Valid @RequestBody LoginReqPayLoad loginUser) {
+		User user = userService.login(loginUser.getUserName(), loginUser.getPassword());
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
 
 	@GetMapping("/getallusers")
 	public ResponseEntity<List<User>> getAllUser() {

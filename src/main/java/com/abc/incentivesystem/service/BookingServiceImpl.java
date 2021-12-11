@@ -11,14 +11,30 @@ import com.abc.incentivesystem.exception.BookingNotExistException;
 import com.abc.incentivesystem.exception.DuplicateBookingException;
 import com.abc.incentivesystem.exception.InvalidBookingDetailsException;
 
+/**
+* The Booking Service Implementation class
+* simply Overrides and implement the methods declared in service Interface.
+*
+* @author  Raveendra G V
+*/
+
 @Service
 public class BookingServiceImpl implements BookingService {
 
 	@Autowired
 	private IBookingDao bookingDao;
-
+	
+	
+	/**
+	   * This method is used to add new Booking. 
+	   * This makes use of JPA inbuilt methods save and findById.
+	   * @param booking This is the parameter to save new booking.
+	   * @exception DuplicateBookingException On input error.
+	   * @return Booking This returns new booking.
+	   */
 	@Override
-	public Booking addBooking(Booking booking) {
+	public Booking addBooking(Booking booking) {		
+		
 		Optional<Booking> optionalbooking = bookingDao.findById(booking.getBookingId());
 		if (optionalbooking.isPresent()) {
 			throw new DuplicateBookingException("Booking Id" + booking.getBookingId() + " is already exist");
@@ -27,6 +43,15 @@ public class BookingServiceImpl implements BookingService {
 		Booking newBooking = bookingDao.save(booking);
 		return newBooking;
 	}
+	
+	/**
+	   * This method is used to update new car details in a Booking. 
+	   * This makes use of JPA inbuilt method findById and manually declared method getBookingById.
+	   * @param car, This is the parameter to save new car in booking.
+	   * @param bookingId, This is the parameter to find the booking which needs to be edited.
+	   * @exception InvalidBookingDetailsException On input error.
+	   * @return Booking, This returns new booking.
+	   */
 
 	@Override
 	public Booking updateCarBooking(Car car, int bookingId) throws InvalidBookingDetailsException {
@@ -40,6 +65,14 @@ public class BookingServiceImpl implements BookingService {
 		bookingDao.save(newbBooking);
 		return newbBooking;
 	}
+	
+	/**
+	   * This method is used to remove existing booking details in a Booking. 
+	   * This makes use of JPA inbuilt methods delete and findById.
+	   * @param bookingId, This is the parameter to find the booking which needs to be deleted.
+	   * @exception BookingNotExistException On input error.
+	   * @return nothing.
+	   */
 
 	@Override
 	public void removeBookingById(int bookingId) throws BookingNotExistException {
@@ -50,12 +83,26 @@ public class BookingServiceImpl implements BookingService {
 		bookingDao.delete(optionalBooking.get());
 
 	}
+	
+	/**
+	   * This method is used to display all the booking details. 
+	   * This makes use of JPA inbuilt methods findAll.
+	   * @return List of Booking.
+	   */
 
 	@Override
 	public List<Booking> getAllBooking() {
 		List<Booking> bookings = bookingDao.findAll();
 		return bookings;
 	}
+	
+	/**
+	   * This method is used to display a particular booking details in a Booking. 
+	   * This makes use of JPA inbuilt methods delete and findById.
+	   * @param bookingId, This is the parameter to find the booking which needs to be displayed.
+	   * @exception BookingNotExistException On input error.
+	   * @return Booking, This returns new booking.
+	   */
 
 	@Override
 	public Booking getBookingById(int bookingId) throws BookingNotExistException {
